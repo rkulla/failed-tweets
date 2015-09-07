@@ -12,11 +12,19 @@ var client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
-var params = {screen_name: process.env.USER_NAME};
+// View the most recent failed tweets
+var params = {
+  screen_name: process.env.USER_NAME,
+  count: 100 // max
+},
+tweet;
 client.get('statuses/user_timeline', params, function(error, tweets, response){
   if (!error) {
     for (var i = 0, n = tweets.length; i < n; i++) {
-        console.log(tweets[i].text);
+      tweet = tweets[i];
+      if (tweet.favorite_count < 1) {
+         console.log(tweet.text);
+      }
     }
   }
 });
