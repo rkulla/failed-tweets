@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/rkulla/failed-tweets",
   "dependencies": {
+    "dotenv": "^1.2.0",
     "twitter": "^1.2.5"
   }
 }
