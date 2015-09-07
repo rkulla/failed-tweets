@@ -1,0 +1,25 @@
+{
+  "name": "failed-tweets",
+  "version": "0.0.1",
+  "description": "shows failed tweets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rkulla/failed-tweets"
+  },
+  "keywords": [
+    "twitter"
+  ],
+  "author": "rkulla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rkulla/failed-tweets/issues"
+  },
+  "homepage": "https://github.com/rkulla/failed-tweets",
+  "dependencies": {
+    "twitter": "^1.2.5"
+  }
+}
