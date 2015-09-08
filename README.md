@@ -1,14 +1,14 @@
-Failed-tweets is a simple command line app that shows you any tweets that you,
-or your organization, didn't get any favorites, retweets, or replies to.
+Failed-tweets is a simple command line app that shows you any tweets that you
+or your organization didn't get any favorites, retweets, or replies to.
 
-Of course, these aren't necessarily failed tweets, but might be considered so
+Of course, these aren't necessarily failed tweets but might be considered so
 if you were aiming for an interaction and didn't get one.
 
 This information can be helpful for knowing what to tweet again or delete.
 
 Note that it doesn't take into account if there was a lot of activity on a
-tweet, which might still mean people read it or clicked it. So take this
-with a grain of salt.
+tweet, which might mean that some people still read or clicked it. So take 
+this data with a grain of salt.
 
 ### Usage
 Create a file called .env in the root of this project directory and add:
