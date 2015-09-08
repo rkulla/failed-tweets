@@ -30,9 +30,6 @@ function(err, data) {
             userLeft = stats[userPath].remaining,
             mentionsLeft = stats[mentionsPath].remaining;
 
-        console.log('User Requests Left =', userLeft);
-        console.log('Mentions Requests Left =', mentionsLeft);
-
         if (userLeft === 0 || mentionsLeft === 0) {
             console.log('Rate limit exceeded. Try again in 15 minutes.');
             process.exit(0);
