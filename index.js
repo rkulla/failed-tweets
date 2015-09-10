@@ -72,9 +72,11 @@ client.get(mentionsPath, params, function(err, mentions) {
                                     mentions[i2].user.id_str) {
 
                                     failed = true;
+                                } else {
                                     break;
                                 }
                             }
+                            failed = true;
 
                         }
 
