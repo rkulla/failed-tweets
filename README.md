@@ -29,3 +29,9 @@ app with read/write perms.
 Run the program with:
 
     $ node index.js
+
+If you're using a version older than node 4.0.0, then consider
+using nvm to also install node 4 or you can use the included
+babel compiled version that downgrades from es6 to es5:
+
+    $ node build/index.js
