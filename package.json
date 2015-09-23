@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "shows failed tweets",
   "main": "index.js",
+  "private": true,
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +21,9 @@
     "url": "https://github.com/rkulla/failed-tweets/issues"
   },
   "homepage": "https://github.com/rkulla/failed-tweets",
+  "engines" : { 
+      "node" : ">=4.0.0" 
+  },
   "dependencies": {
     "dotenv": "^1.2.0",
     "twitter": "^1.2.5"
