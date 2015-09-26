@@ -1,5 +1,20 @@
 'use strict';
 
+var express = require('express');
+
+var app = express();
+
+// set up handlebars view engine
+var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+
+app.set('port', process.env.PORT || 3000);
+
+app.use(express['static'](__dirname + '/public'));
+
+'use strict';
+
 // Load .env files from root based on the NODE_ENV value
 require('dotenv').load();
 
@@ -94,12 +109,37 @@ getMentions().then(function (mentions) {
 
             if (failed) {
                 console.log('https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str);
-
                 console.log(tweets[i].text);
                 console.log();
+
+                tempTweet.push('https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str);
+                tempTweet.push(tweets[i].text);
+                results.push(tempTweet);
             }
         }
     }
+    return results;
 })['catch'](function (reason) {
     console.log('Caught Error:', reason);
+});
+
+app.get('/', function (req, res) {
+    res.render('home', { twitterResults: results });
+});
+
+// 404 catch-all handler (middleware)
+app.use(function (req, res, next) {
+    res.status(404);
+    res.render('404');
+});
+
+// 500 error handler (middleware)
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(500);
+    res.render('500');
+});
+
+app.listen(app.get('port'), function () {
+    console.log('Express started on http://localhost:' + app.get('port'));
 });
