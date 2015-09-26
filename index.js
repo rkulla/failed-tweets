@@ -76,6 +76,8 @@ function getTweets(mentions) {
     });
 }
 
+var results = [];
+
 getMentions()
 .then(mentions => getTweets(mentions))
 .then(promiseValues => {
@@ -115,6 +117,7 @@ getMentions()
             }
 
             if (failed) {
+                var tempTweet = [];
                 console.log('https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str);
                 console.log(tweets[i].text);
                 console.log();
