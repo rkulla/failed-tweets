@@ -74,6 +74,8 @@ function getTweets(mentions) {
     });
 }
 
+var results = [];
+
 getMentions().then(function (mentions) {
     return getTweets(mentions);
 }).then(function (promiseValues) {
@@ -108,6 +110,7 @@ getMentions().then(function (mentions) {
             }
 
             if (failed) {
+                var tempTweet = [];
                 console.log('https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str);
                 console.log(tweets[i].text);
                 console.log();
