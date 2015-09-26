@@ -52,7 +52,6 @@ function getMentions() {
         let params = {
             count: 100
         };
->>>>>>> upstream/master
 
         client.get(MENTIONSPATH, params, (err, mentions) => {
             if (!err) {
