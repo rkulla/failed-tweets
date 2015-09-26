@@ -1,0 +1,10 @@
+<h1>Failed_Tweets</h1>
+
+<p>Nobody favorited/retweeted/replied to these tweets:</p>
+<!-- <ul>{{ twitterResults.[0] }}</ul> -->
+
+{{#each twitterResults}}
+    <ul>{{#each this}}
+      <li>{{  this  }}</li>
+    {{/each}}</ul>
+{{/each}}
