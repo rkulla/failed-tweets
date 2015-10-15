@@ -110,14 +110,11 @@ getMentions().then(function (mentions) {
             }
 
             if (failed) {
-                var tempTweet = [];
                 console.log('https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str);
                 console.log(tweets[i].text);
                 console.log();
 
-                tempTweet.push('https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str);
-                tempTweet.push(tweets[i].text);
-                results.push(tempTweet);
+                results.push({ tweet: { url: 'https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str, text: tweets[i].text } });
             }
         }
     }
