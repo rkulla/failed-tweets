@@ -1,17 +1,30 @@
-<h1>Failed_Tweets</h1>
-
-<p>Nobody favorited/retweeted/replied to these tweets:</p>
-<table>
-    <thead> 
-        <th>URL</th> 
-        <th>Text</th> 
-    </thead> 
-    <tbody> 
-        {{#each twitterResults}} 
+ <!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-typography--display-1">Failed Tweets</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+    </div>
+  </header>
+  <div class="mdl-grid">
+    <h5>Nobody favorited/retweeted/replied to these tweets</h5>
+  </div>
+  <div class="mdl-grid">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp is-upgraded">
+      <thead> 
+        <th class="mdl-data-table__cell--non-numeric">URL</th>
+        <th class="mdl-data-table__cell--non-numeric">Text</th>
+      </thead> 
+      <tbody> 
+        {{#each twitterResults}}
         <tr> 
-            <td>{{tweet.url}}</td> 
-            <td>{{tweet.text}}</td> 
+          <td class="mdl-data-table__cell--non-numeric">{{tweet.url}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{tweet.text}}</td>
         </tr> 
-        {{/each}} 
-    </tbody> 
-</table> 
+        {{/each}}
+      </tbody>
+    </table>
+  </div>

@@ -44,6 +44,6 @@ In your web browser, the data will be displayed at this address.
 ```
 
 ### Note
-Web output, at this point, is as basic as possible.  I plan on improving the UI/UX in the future.
+Web output, has been improved with Google's MDL (material-design-lite - https://github.com/google/material-design-lite ).
 
 
