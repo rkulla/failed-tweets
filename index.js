@@ -80,6 +80,7 @@ getMentions()
         if (tweets[i].favorite_count === 0 &&
             tweets[i].retweet_count === 0 &&
             tweets[i].in_reply_to_status_id_str === null) {
+               failed = true;
 
             // Loop through the mentions
             for (let i2 = 0, n2 = mentions.length; i2 < n2; i2++) {
@@ -93,7 +94,6 @@ getMentions()
                         mentions[i2].user.id_str) {
 
                         failed = true;
-                        break;
                     }
                 }
 

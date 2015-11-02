@@ -76,6 +76,7 @@ getMentions().then(function (mentions) {
         // Check if tweet wasn't favorited or retweeted
         // and wasn't just a reply to someone
         if (tweets[i].favorite_count === 0 && tweets[i].retweet_count === 0 && tweets[i].in_reply_to_status_id_str === null) {
+            failed = true;
 
             // Loop through the mentions
             for (var i2 = 0, n2 = mentions.length; i2 < n2; i2++) {
@@ -87,7 +88,6 @@ getMentions().then(function (mentions) {
                     if (mentions[i2].in_reply_to_user_id_str !== mentions[i2].user.id_str) {
 
                         failed = true;
-                        break;
                     }
                 }
             }
