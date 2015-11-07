@@ -123,6 +123,10 @@ getMentions().then(function (mentions) {
 
             console.log(tweet.text);
             console.log();
+
+            // Build array of tweets for html output
+            results.push({ tweet: { url: 'https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str, text: tweets[i].text } });
+
         }
     }
     return results;
