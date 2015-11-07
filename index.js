@@ -61,52 +61,60 @@ function getTweets(mentions) {
     });
 }
 
+function isFailedTweet(tweet, mentions) {
+    // A flag for if every test for failure happens
+    let failed = false;
+
+    // Check if tweet wasn't favorited or retweeted
+    // and wasn't just a reply to someone
+    if (tweet.favorite_count === 0 &&
+        tweet.retweet_count === 0 &&
+        tweet.in_reply_to_status_id_str === null) {
+            failed = true;
+
+        // Loop through the mentions
+        for (let i2 = 0, n2 = mentions.length; i2 < n2; i2++) {
+
+            // Check if the tweet was in any mentions
+            if (tweet.id_str ===
+                mentions[i2].in_reply_to_status_id_str) {
+
+                // Don't count being the only reply to yourself
+                if (mentions[i2].in_reply_to_user_id_str ===
+                    mentions[i2].user.id_str) {
+
+                    failed = true;
+                } else {
+                    failed = false;
+                }
+                break;
+            }
+
+        }
+    }
+    return failed;
+}
+
 getMentions()
 .then(mentions => getTweets(mentions))
 .then(promiseValues => {
     let tweets = promiseValues[0],
-        mentions = promiseValues[1];
+        mentions = promiseValues[1],
+        tweet = null;
 
-    // A flag for if every test for failure happens
-    let failed = false;
+    console.log("Nobody favorited/retweeted/replied to these tweets:\n");
 
-    console.log('Nobody favorited/retweeted/replied to these tweets:');
-    console.log();
     // Loop through the tweets
     for (let i = 0, n = tweets.length; i < n; i++) {
+        tweet = tweets[i];
 
-        // Check if tweet wasn't favorited or retweeted
-        // and wasn't just a reply to someone
-        if (tweets[i].favorite_count === 0 &&
-            tweets[i].retweet_count === 0 &&
-            tweets[i].in_reply_to_status_id_str === null) {
+        if (isFailedTweet(tweet, mentions)) {
+            console.log('https://twitter.com/' +
+                process.env.USER_NAME + '/status/' +
+                tweet.id_str);
 
-            // Loop through the mentions
-            for (let i2 = 0, n2 = mentions.length; i2 < n2; i2++) {
-
-                // Check if the tweet was in any mentions
-                if (tweets[i].id_str ===
-                    mentions[i2].in_reply_to_status_id_str) {
-
-                    // Don't count replying to yourself
-                    if (mentions[i2].in_reply_to_user_id_str !==
-                        mentions[i2].user.id_str) {
-
-                        failed = true;
-                        break;
-                    }
-                }
-
-            }
-
-            if (failed) {
-                console.log('https://twitter.com/' +
-                    process.env.USER_NAME + '/status/' +
-                    tweets[i].id_str);
-
-                console.log(tweets[i].text);
-                console.log();
-            }
+            console.log(tweet.text);
+            console.log();
         }
     }
 })
