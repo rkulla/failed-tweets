@@ -89,7 +89,7 @@ function isFailedTweet(tweet, mentions) {
     if (tweet.favorite_count === 0 &&
         tweet.retweet_count === 0 &&
         tweet.in_reply_to_status_id_str === null) {
-            failed = true;
+        failed = true;
 
         // Loop through the mentions
         for (let i2 = 0, n2 = mentions.length; i2 < n2; i2++) {
@@ -121,22 +121,27 @@ getMentions()
         mentions = promiseValues[1],
         tweet = null;
 
-    console.log("Nobody favorited/retweeted/replied to these tweets:\n");
+    console.log('Nobody favorited/retweeted/replied to these tweets:\n');
 
     // Loop through the tweets
     for (let i = 0, n = tweets.length; i < n; i++) {
         tweet = tweets[i];
 
         if (isFailedTweet(tweet, mentions)) {
-            console.log('https://twitter.com/' +
-                process.env.USER_NAME + '/status/' +
-                tweet.id_str);
+            let tweetData = {
+                tweet: {
+                    url:'https://twitter.com/' + process.envUSER_NAME + '/status' + tweet.id_str,
+                    text: tweet.text
+                }
+            };
+
+            console.log(tweetData.tweet.url);
 
             console.log(tweet.text);
             console.log();
             
-            // Build array of tweets for html output
-            results.push({ tweet: { url: 'https://twitter.com/' + process.env.USER_NAME + '/status/' + tweets[i].id_str, text: tweets[i].text } });
+            // Build array of tweets for HTML output
+            results.push(tweetData);
         }
     }
     return results;
