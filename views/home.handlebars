@@ -21,7 +21,9 @@
       <tbody> 
         {{#each twitterResults}}
         <tr> 
-          <td class="mdl-data-table__cell--non-numeric">{{tweet.url}}</td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <a href="{{tweet.url}}" target="_blank">{{tweet.url}}</a>
+          </td>
           <td class="mdl-data-table__cell--non-numeric">{{tweet.text}}</td>
         </tr> 
         {{/each}}
