@@ -121,7 +121,7 @@ getMentions().then(function (mentions) {
         if (isFailedTweet(tweet, mentions)) {
             var tweetData = {
                 tweet: {
-                    url: 'https://twitter.com/' + process.envUSER_NAME + '/status' + tweet.id_str,
+                    url: 'https://twitter.com/' + process.env.USER_NAME + '/status/' + tweet.id_str,
                     text: tweet.text
                 }
             };
