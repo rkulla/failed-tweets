@@ -14,8 +14,6 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
 
-'use strict';
-
 // Load .env files from root based on the NODE_ENV value
 require('dotenv').load();
 

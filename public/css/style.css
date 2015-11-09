@@ -12,7 +12,7 @@ th {
 }
 
 tr:nth-child(odd) {
-    background: #E8EAF6;
+    background: #ECEAF5;
 }
 
 td:hover {
@@ -20,11 +20,16 @@ td:hover {
 }
 
 td a {
-    color: #304FFE; 
+    color: #55ACEE;
+    /*color: #304FFE; */
     text-decoration: none;
 }
 
 td a:hover {
+    color: #FF4081;
+}
+
+li a:hover {
     color: #FF4081;
 }
 
