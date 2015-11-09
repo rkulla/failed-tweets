@@ -35,3 +35,16 @@ using nvm to also install node 4 or you can use the included
 babel compiled version that downgrades from es6 to es5:
 
     $ node build/index.js
+
+### Output
+In your terminal, a list of your tweets will be displayed.
+In your web browser, the data will be displayed at this address.
+```
+    Express started on http://localhost:3000
+```
+![Image of Failed Tweet app UI](https://github.com/smirecki/failed-tweets/blob/Add-UI-2/images/Failed-Tweets-with-MDL.png)
+
+### Note
+Web output, has been improved with Google's Material Design - Lite version - https://github.com/google/material-design-lite ).
+
+

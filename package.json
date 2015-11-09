@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "dotenv": "^1.2.0",
+    "express": "~4.4.2",
+    "express-handlebars": "2.0.1",
     "twitter": "^1.2.5"
   }
 }

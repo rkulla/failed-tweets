@@ -1,5 +1,20 @@
 'use strict';
 
+var express = require('express');
+
+var app = express();
+
+// serve static content before dynamic content
+app.use(express.static('public'));
+
+// set up handlebars view engine
+var handlebars = require('express-handlebars')
+    .create({ defaultLayout:'main'});
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+
+app.set('port', process.env.PORT || 3000);
+
 // Load .env files from root based on the NODE_ENV value
 require('dotenv').load();
 
@@ -61,6 +76,8 @@ function getTweets(mentions) {
     });
 }
 
+var results = [];
+
 function isFailedTweet(tweet, mentions) {
     // A flag for if every test for failure happens
     let failed = false;
@@ -70,7 +87,7 @@ function isFailedTweet(tweet, mentions) {
     if (tweet.favorite_count === 0 &&
         tweet.retweet_count === 0 &&
         tweet.in_reply_to_status_id_str === null) {
-            failed = true;
+        failed = true;
 
         // Loop through the mentions
         for (let i2 = 0, n2 = mentions.length; i2 < n2; i2++) {
@@ -102,22 +119,53 @@ getMentions()
         mentions = promiseValues[1],
         tweet = null;
 
-    console.log("Nobody favorited/retweeted/replied to these tweets:\n");
+    console.log('Nobody favorited/retweeted/replied to these tweets:\n');
 
     // Loop through the tweets
     for (let i = 0, n = tweets.length; i < n; i++) {
         tweet = tweets[i];
 
         if (isFailedTweet(tweet, mentions)) {
-            console.log('https://twitter.com/' +
-                process.env.USER_NAME + '/status/' +
-                tweet.id_str);
+            let tweetData = {
+                tweet: {
+                    url:'https://twitter.com/' + process.env.USER_NAME + '/status/' + tweet.id_str,
+                    text: tweet.text,
+                    date: tweet.created_at
+                }
+            };
+
+            console.log(tweetData.tweet.url);
 
             console.log(tweet.text);
             console.log();
+            
+            // Build array of tweets for HTML output
+            results.push(tweetData);
         }
     }
+    return results;
 })
 .catch(reason => {
     console.log('Caught Error:', reason);
+});
+
+app.get('/', function(req, res) {
+    res.render('home', { twitterResults: results });
+});
+
+// 404 catch-all handler (middleware)
+app.use(function(req, res, next){
+    res.status(404);
+    res.render('404');
+});
+
+// 500 error handler (middleware)
+app.use(function(err, req, res, next){
+    console.error(err.stack);
+    res.status(500);
+    res.render('500');
+});
+
+app.listen(app.get('port'), function(){
+    console.log( 'Express started on http://localhost:' + app.get('port'));
 });

@@ -1,0 +1,39 @@
+body {
+     font:15px arial,sans-serif;
+}
+
+table {
+    margin: 10px;
+}
+
+th {
+    font-size: 14px;
+    background: #C5CAE9;
+}
+
+tr:nth-child(odd) {
+    background: #ECEAF5;
+}
+
+td:hover {
+    background: #E3F2FD;
+}
+
+td a {
+    color: #55ACEE;
+    /*color: #304FFE; */
+    text-decoration: none;
+}
+
+td a:hover {
+    color: #FF4081;
+}
+
+li a:hover {
+    color: #FF4081;
+}
+
+ul
+{
+    list-style-type: none;
+}

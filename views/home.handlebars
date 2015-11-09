@@ -1,0 +1,31 @@
+ <!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-typography--display-1">Failed Tweets</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+    </div>
+  </header>
+  <div class="mdl-grid">
+    <h5>Nobody favorited/retweeted/replied to these tweets</h5>
+  </div>
+  <div class="mdl-grid">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp is-upgraded">
+      <thead> 
+        <th class="mdl-data-table__cell--non-numeric">TEXT</th>
+        <th class="mdl-data-table__cell--non-numeric">DATE</th>
+      </thead> 
+      <tbody> 
+        {{#each twitterResults}}
+        <tr> 
+          <td class="mdl-data-table__cell--non-numeric"><a href="{{tweet.url}}" target="_blank">{{tweet.text}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{tweet.date}}</td>
+        </tr> 
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <img src="{{tweet.image}}">
