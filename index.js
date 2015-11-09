@@ -4,6 +4,9 @@ var express = require('express');
 
 var app = express();
 
+// serve static content before dynamic content
+app.use(express.static('public'));
+
 // set up handlebars view engine
 var handlebars = require('express-handlebars')
     .create({ defaultLayout:'main'});
@@ -11,11 +14,6 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
-
-app.use(express.static(__dirname + '/public'));
-
-
-'use strict';
 
 // Load .env files from root based on the NODE_ENV value
 require('dotenv').load();
@@ -131,7 +129,8 @@ getMentions()
             let tweetData = {
                 tweet: {
                     url:'https://twitter.com/' + process.env.USER_NAME + '/status/' + tweet.id_str,
-                    text: tweet.text
+                    text: tweet.text,
+                    date: tweet.created_at
                 }
             };
 

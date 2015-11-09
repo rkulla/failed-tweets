@@ -15,18 +15,17 @@
   <div class="mdl-grid">
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp is-upgraded">
       <thead> 
-        <th class="mdl-data-table__cell--non-numeric">URL</th>
-        <th class="mdl-data-table__cell--non-numeric">Text</th>
+        <th class="mdl-data-table__cell--non-numeric">TEXT</th>
+        <th class="mdl-data-table__cell--non-numeric">DATE</th>
       </thead> 
       <tbody> 
         {{#each twitterResults}}
         <tr> 
-          <td class="mdl-data-table__cell--non-numeric">
-            <a href="{{tweet.url}}" target="_blank">{{tweet.url}}</a>
-          </td>
-          <td class="mdl-data-table__cell--non-numeric">{{tweet.text}}</td>
+          <td class="mdl-data-table__cell--non-numeric"><a href="{{tweet.url}}" target="_blank">{{tweet.text}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{tweet.date}}</td>
         </tr> 
         {{/each}}
       </tbody>
     </table>
   </div>
+  <img src="{{tweet.image}}">
